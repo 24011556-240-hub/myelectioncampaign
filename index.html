@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Sadia for VP | HITS 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+            background: #ffffff;
+            color: #1E455B;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor - Face Image */
+        .custom-cursor {
+            width: 80px;
+            height: 80px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.05s ease;
+            background-image: url('assets/sadia-face.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Background Blur Elements */
+        .blur-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: #CDF22B;
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 300px;
+            height: 300px;
+            background: #1E455B;
+            top: 60%;
+            right: -5%;
+            animation-delay: 5s;
+        }
+
+        .blob-3 {
+            width: 350px;
+            height: 350px;
+            background: #CDF22B;
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* Doodle Stars */
+        .star {
+            position: fixed;
+            font-size: 24px;
+            animation: twinkle 3s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #CDF22B;
+            text-shadow: 4px 4px 0px #1E455B, 8px 8px 0px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease;
+            position: relative;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #1E455B;
+            margin-bottom: 10px;
+        }
+
+        .society-name {
+            font-size: 1.2rem;
+            color: #1E455B;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            color: #1E455B;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .contact-info a {
+            color: #CDF22B;
+            text-decoration: none;
+            background: #1E455B;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .intro-text {
+            margin-top: 30px;
+            text-align: center;
+            max-width: 700px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            background: rgba(205, 242, 43, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 4px solid #CDF22B;
+            box-shadow: 8px 8px 0px rgba(30, 69, 91, 0.1);
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            border: 5px solid #CDF22B;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin: 60px 0;
+            background: rgba(205, 242, 43, 0.08);
+            padding: 40px;
+            border-radius: 30px;
+            border: 4px solid #1E455B;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #CDF22B;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px #1E455B;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '✨';
+            position: absolute;
+            right: -40px;
+            top: 0;
+            animation: twinkle 2s infinite;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .achievement-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 20px;
+            border: 3px solid #1E455B;
+            transition: transform 0.3s ease;
+            position: relative;
+            box-shadow: 5px 5px 0px rgba(30, 69, 91, 0.2);
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px) rotate(-2deg);
+            box-shadow: 10px 10px 0px rgba(205, 242, 43, 0.5);
+            border-color: #CDF22B;
+        }
+
+        .achievement-card::before {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2rem;
+        }
+
+        .achievement-title {
+            font-size: 1.3rem;
+            color: #CDF22B;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .achievement-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #1E455B;
+        }
+
+        /* Promises Section */
+        .promises-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .promise-item {
+            background: #ffffff;
+            padding: 25px 30px 25px 60px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border: 3px solid #1E455B;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 4px 4px 0px rgba(30, 69, 91, 0.1);
+            cursor: pointer;
+        }
+
+        .promise-item::before {
+            content: '→';
+            position: absolute;
+            left: 20px;
+            color: #CDF22B;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .promise-item:hover {
+            background: #CDF22B;
+            transform: translateX(10px);
+            box-shadow: 8px 8px 0px rgba(30, 69, 91, 0.2);
+        }
+
+        .why-vote-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .why-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #1E455B;
+            box-shadow: 5px 5px 0px rgba(30, 69, 91, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+            box-shadow: 10px 10px 0px rgba(205, 242, 43, 0.6);
+            border-color: #CDF22B;
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .why-title {
+            font-size: 1.4rem;
+            color: #1E455B;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .why-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #1E455B;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: #CDF22B;
+            color: #1E455B;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 40px auto;
+            border: 5px solid #1E455B;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.3);
+        }
+
+        .cta-button::before {
+            content: '✨';
+            position: absolute;
+            left: 20px;
+        }
+
+        .cta-button::after {
+            content: '✨';
+            position: absolute;
+            right: 20px;
+        }
+
+        .cta-container {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #CDF22B;
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .profile-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                font-size: 1.5rem;
+                padding: 15px 40px;
+            }
+        }
+
+        /* Highlight Text */
+        .highlight {
+            color: #CDF22B;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <!-- Background Blur Blobs -->
+    <div class="blur-blob blob-1"></div>
+    <div class="blur-blob blob-2"></div>
+    <div class="blur-blob blob-3"></div>
+
+    <!-- Doodle Stars -->
+    <div class="star" style="top: 10%; left: 15%;">⭐</div>
+    <div class="star" style="top: 20%; right: 10%;">✨</div>
+    <div class="star" style="bottom: 30%; left: 10%;">💫</div>
+    <div class="star" style="top: 50%; right: 20%;">⭐</div>
+    <div class="star" style="bottom: 20%; right: 15%;">✨</div>
+    <div class="star" style="top: 70%; left: 25%;">💫</div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="hero-title">VOTE SADIA FOR VP</h1>
+            <p class="subtitle">no cap, your future VP who actually gets it 💯</p>
+            <p class="society-name">HITS - Hayatian Information Technology Society</p>
+            <p class="contact-info">📞 Contact: <a href="tel:03409740991">0340-9740991</a></p>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="intro-text">
+                <p>yo bestie! 👋 I'm <span class="highlight">Sadia</span>, your future VP who's not here for the vibes only (though we'll have those too fr). I'm running because I'm tired of seeing talented people like you not getting the opportunities you deserve. I've been where you are, scrolled through the same job posts at 2am, stressed about certs, wondered if anyone actually cares about our growth. <strong>Spoiler: I do. And I'm ready to prove it.</strong> 🚀</p>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <video controls>
+                <source src="assets/sadia-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <!-- Why Vote Section -->
+        <section class="content-section">
+            <h2 class="section-title">why should u even vote for me tho? 🤔</h2>
+            <div class="why-vote-detailed">
+                <div class="why-card">
+                    <div class="why-icon">🚀</div>
+                    <div class="why-title">actual hackathons that slap</div>
+                    <div class="why-desc">tired of "learning sessions" that are just boring slides? same bestie. I'll organize hackathons and events where we actually BUILD stuff, get real certs, and have fun doing it. think: pizza, code, chaos, certificates. in that order.</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <div class="why-title">big sis energy but make it tech</div>
+                    <div class="why-desc">I've fumbled, succeeded, cried over bugs at 3am, and figured it out. now it's your turn but with a cheat code - me. I'll guide you through campus platforms, deadlines, and opportunities like your personal GPS (but cooler).</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">💼</div>
+                    <div class="why-title">the job portal plug 💰</div>
+                    <div class="why-desc">this is the candy I promised. exclusive job portals, recruitment WhatsApp groups, professional networks that actually reply. you vote for me = you get the VIP pass to opportunities everyone's gatekeeping. periodt.</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🌐</div>
+                    <div class="why-title">ur new tech fam</div>
+                    <div class="why-desc">join a community of actual builders and creators (not just ppl who say they code). collaborate on projects, share memes, help each other debug at ungodly hours. we're building a network that goes beyond campus.</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🎓</div>
+                    <div class="why-title">been there, done that, got receipts</div>
+                    <div class="why-desc">was HITS leading member last year, juggled multiple responsibilities, and didn't drop the ball once. I know what works, what doesn't, and what our community actually needs (not what looks good on paper).</div>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🤝</div>
+                    <div class="why-title">we all eat or nobody eats</div>
+                    <div class="why-desc">I'm not gate-keeping anything. my whole vibe is lifting people up as we go. if you want to contribute, learn, or just vibe with tech - there's space for you. simple as that.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="content-section">
+            <h2 class="section-title">the resume but make it ✨ slay ✨</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-title">🇵🇰 Uran Pakistan Youth Cabinet Member</div>
+                    <div class="achievement-desc">2025 - basically I'm out here contributing to national youth policies and initiatives. big girl moves only.</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-title">👩‍💻 Women Development Society - UOG</div>
+                    <div class="achievement-desc">Hierarchical Member 2025 - worked on province-wide women's empowerment through digital media under CM Maryam Nawaz's Women Development Division. representation matters, and I'm about it.</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-title">🎨 Figma Campus Ambassador</div>
+                    <div class="achievement-desc">2025-2026 - teaching y'all how to make designs that don't look like they're from 2015. you're welcome.</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-title">🤖 Claude Campus Ambassador</div>
+                    <div class="achievement-desc">2025 - was bringing AI literacy to campus before it was trendy. now everyone and their mom uses AI lol.</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-title">💼 Professional Designer at Multiple Companies</div>
+                    <div class="achievement-desc">worked with real clients, met real deadlines, made real money. bringing that corporate knowledge back to help y'all skip the learning curve.</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-title">🏆 HITS Leading Member (Last Year)</div>
+                    <div class="achievement-desc">your fav society? yeah I was running that show last year. managed multiple projects without a mental breakdown (okay maybe one, but we don't talk about that).</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-container">
+            <a href="#vote" class="cta-button">VOTE SADIA OR MISS OUT</a>
+            <p style="margin-top: 20px; font-size: 1.2rem; color: #1E455B;">seriously tho, let's do this 💪</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>let's build a tech community that actually hits different 🚀✨</p>
+            <p style="margin-top: 20px; font-size: 1.1rem; color: #1E455B;">📞 slide into my texts: <strong>0340-9740991</strong></p>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #1E455B;">HITS Elections 2026 | made with chaos & coffee ☕</p>
+        </footer>
+    </div>
+
+    <script>
+        // Custom Cursor - Face follows mouse
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.content-section, .achievement-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
