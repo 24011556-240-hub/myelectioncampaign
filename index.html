@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vote Sadia for VP | HITS 2026</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,14 +14,14 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
-            background: #ffffff;
-            color: #1E455B;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #FFFFFF;
+            color: #003B8F;
             overflow-x: hidden;
             cursor: none;
         }
 
-        /* Custom Cursor - Face Image */
+        /* Custom Cursor */
         .custom-cursor {
             width: 80px;
             height: 80px;
@@ -32,366 +34,538 @@
             background-repeat: no-repeat;
             background-position: center;
             transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            filter: invert(1);
         }
 
-        /* Background Blur Elements */
-        .blur-blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(100px);
+        /* Graphic Elements */
+        .graphic-element {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .blob-graphic {
+            width: 200px;
+            height: 200px;
+            background: #39D353;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             opacity: 0.15;
-            animation: float 20s infinite ease-in-out;
-            z-index: 0;
+            animation: morph 8s ease-in-out infinite;
         }
 
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: #CDF22B;
-            top: 10%;
-            left: -10%;
-            animation-delay: 0s;
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
         }
 
-        .blob-2 {
-            width: 300px;
-            height: 300px;
-            background: #1E455B;
-            top: 60%;
-            right: -5%;
-            animation-delay: 5s;
+        .circle-outline {
+            width: 150px;
+            height: 150px;
+            border: 6px solid #0645AD;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
         }
 
-        .blob-3 {
-            width: 350px;
-            height: 350px;
-            background: #CDF22B;
-            bottom: 10%;
-            left: 50%;
-            animation-delay: 10s;
+        .star-burst {
+            font-size: 60px;
+            color: #39D353;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .checkerboard {
+            width: 80px;
+            height: 80px;
+            background-image:
+                linear-gradient(45deg, #0645AD 25%, transparent 25%),
+                linear-gradient(-45deg, #0645AD 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #0645AD 75%),
+                linear-gradient(-45deg, transparent 75%, #0645AD 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        /* Doodle Stars */
-        .star {
-            position: fixed;
-            font-size: 24px;
-            animation: twinkle 3s infinite ease-in-out;
-            z-index: 1;
+        .x-symbol {
+            font-size: 80px;
+            font-weight: 900;
+            color: #20B84B;
+            opacity: 0.2;
+            animation: rotateX 10s linear infinite;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        @keyframes rotateX {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ring-element {
+            width: 120px;
+            height: 120px;
+            border: 8px solid #39D353;
+            border-radius: 50%;
+            border-left-color: transparent;
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 80px 60px;
+            position: relative;
+        }
+
+        /* Hero Section - Editorial Poster Style */
+        header {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .hero-left {
             position: relative;
             z-index: 2;
         }
 
-        /* Header */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
+        .label-small {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #003B8F;
+            opacity: 0.6;
+            margin-bottom: 20px;
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #CDF22B;
-            text-shadow: 4px 4px 0px #1E455B, 8px 8px 0px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-            animation: bounceIn 1s ease;
-            position: relative;
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 0.9;
+            color: #0645AD;
+            margin-bottom: 40px;
+            letter-spacing: -4px;
+            text-transform: uppercase;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .hero-title span {
+            display: block;
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: #1E455B;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #003B8F;
+            max-width: 500px;
+            margin-bottom: 30px;
+            font-weight: 400;
         }
 
         .society-name {
-            font-size: 1.2rem;
-            color: #1E455B;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0645AD;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
         }
 
         .contact-info {
-            font-size: 1.3rem;
-            color: #1E455B;
-            margin-top: 20px;
-            font-weight: bold;
+            font-size: 1.1rem;
+            color: #003B8F;
+            font-weight: 600;
         }
 
         .contact-info a {
-            color: #CDF22B;
+            color: #FFFFFF;
             text-decoration: none;
-            background: #1E455B;
-            padding: 10px 20px;
-            border-radius: 10px;
+            background: #0645AD;
+            padding: 16px 32px;
             display: inline-block;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 3px solid #0645AD;
         }
 
-        /* Profile Section */
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 60px 0;
+        .contact-info a:hover {
+            background: #39D353;
+            border-color: #39D353;
+            transform: translateY(-2px);
+        }
+
+        .hero-right {
             position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 3/4;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 8px solid #0645AD;
+            box-shadow: 40px 40px 0 rgba(6, 69, 173, 0.15);
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: #39D353;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Profile Section - Editorial Layout */
+        .profile-section {
+            margin: 160px 0;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .section-number {
+            font-size: 180px;
+            font-weight: 900;
+            color: #0645AD;
+            opacity: 0.08;
+            line-height: 0.8;
+            position: sticky;
+            top: 100px;
         }
 
         .intro-text {
-            margin-top: 30px;
-            text-align: center;
-            max-width: 700px;
-            font-size: 1.3rem;
+            background: #FFFFFF;
+            padding: 60px;
+            font-size: 1.5rem;
             line-height: 1.8;
-            background: rgba(205, 242, 43, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            border: 4px solid #CDF22B;
-            box-shadow: 8px 8px 0px rgba(30, 69, 91, 0.1);
+            color: #003B8F;
+            position: relative;
+            border-left: 8px solid #39D353;
+        }
+
+        .intro-text .highlight {
+            color: #0645AD;
+            font-weight: 700;
         }
 
         /* Video Section */
         .video-section {
-            margin: 60px auto;
-            text-align: center;
+            margin: 160px 0;
+            position: relative;
+        }
+
+        .video-label {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0645AD;
+            margin-bottom: 30px;
         }
 
         video {
             width: 100%;
-            max-width: 800px;
-            border-radius: 20px;
-            border: 5px solid #CDF22B;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 100%;
+            border: 6px solid #0645AD;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
 
-        /* Content Sections */
+        /* Content Sections - Modular Editorial */
         .content-section {
-            margin: 60px 0;
-            background: rgba(205, 242, 43, 0.08);
-            padding: 40px;
-            border-radius: 30px;
-            border: 4px solid #1E455B;
+            margin: 200px 0;
             position: relative;
-            backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: 2.5rem;
-            color: #CDF22B;
-            margin-bottom: 30px;
-            text-shadow: 3px 3px 0px #1E455B;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 0.95;
+            color: #0645AD;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
             position: relative;
             display: inline-block;
         }
 
-        .section-title::after {
-            content: '✨';
+        .section-title::before {
+            content: '';
             position: absolute;
-            right: -40px;
-            top: 0;
-            animation: twinkle 2s infinite;
+            width: 60px;
+            height: 8px;
+            background: #39D353;
+            top: -30px;
+            left: 0;
         }
 
-        /* Achievements Grid */
+        /* Why Vote - Asymmetric Grid */
+        .why-vote-detailed {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .why-card {
+            background: #FFFFFF;
+            padding: 50px 40px;
+            border: 4px solid #0645AD;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .why-card:nth-child(2),
+        .why-card:nth-child(5) {
+            transform: translateY(60px);
+        }
+
+        .why-card:hover {
+            background: #0645AD;
+            transform: translateY(-10px) !important;
+        }
+
+        .why-card:hover .why-title,
+        .why-card:hover .why-desc {
+            color: #FFFFFF;
+        }
+
+        .why-card:hover .why-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .why-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            transition: transform 0.4s ease;
+        }
+
+        .why-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #39D353;
+            opacity: 0.2;
+        }
+
+        .why-title {
+            font-size: 1.3rem;
+            color: #003B8F;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            transition: color 0.4s ease;
+        }
+
+        .why-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #003B8F;
+            transition: color 0.4s ease;
+        }
+
+        /* Achievements - Experimental Layout */
         .achievements-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
         }
 
         .achievement-card {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 20px;
-            border: 3px solid #1E455B;
-            transition: transform 0.3s ease;
+            background: #FFFFFF;
+            padding: 50px;
+            border: 5px solid #003B8F;
             position: relative;
-            box-shadow: 5px 5px 0px rgba(30, 69, 91, 0.2);
+            transition: all 0.4s ease;
         }
 
         .achievement-card:hover {
-            transform: translateY(-10px) rotate(-2deg);
-            box-shadow: 10px 10px 0px rgba(205, 242, 43, 0.5);
-            border-color: #CDF22B;
+            border-color: #39D353;
+            transform: translateX(10px);
         }
 
         .achievement-card::before {
-            content: '⭐';
+            content: '★';
             position: absolute;
-            top: -15px;
-            right: -15px;
-            font-size: 2rem;
+            top: -25px;
+            right: 30px;
+            font-size: 3rem;
+            color: #39D353;
         }
 
         .achievement-title {
-            font-size: 1.3rem;
-            color: #CDF22B;
-            margin-bottom: 10px;
-            font-weight: bold;
+            font-size: 1.4rem;
+            color: #0645AD;
+            margin-bottom: 20px;
+            font-weight: 900;
+            line-height: 1.3;
         }
 
         .achievement-desc {
             font-size: 1rem;
-            line-height: 1.6;
-            color: #1E455B;
+            line-height: 1.7;
+            color: #003B8F;
         }
 
-        /* Promises Section */
-        .promises-list {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .promise-item {
-            background: #ffffff;
-            padding: 25px 30px 25px 60px;
-            margin: 20px 0;
-            border-radius: 15px;
-            border: 3px solid #1E455B;
-            font-size: 1.1rem;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 4px 4px 0px rgba(30, 69, 91, 0.1);
-            cursor: pointer;
-        }
-
-        .promise-item::before {
-            content: '→';
-            position: absolute;
-            left: 20px;
-            color: #CDF22B;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .promise-item:hover {
-            background: #CDF22B;
-            transform: translateX(10px);
-            box-shadow: 8px 8px 0px rgba(30, 69, 91, 0.2);
-        }
-
-        .why-vote-detailed {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .why-card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 20px;
-            border: 3px solid #1E455B;
-            box-shadow: 5px 5px 0px rgba(30, 69, 91, 0.1);
-            transition: all 0.3s ease;
+        /* CTA - Bold Poster Style */
+        .cta-container {
+            text-align: center;
+            margin: 200px 0;
             position: relative;
         }
 
-        .why-card:hover {
-            transform: translateY(-5px) rotate(2deg);
-            box-shadow: 10px 10px 0px rgba(205, 242, 43, 0.6);
-            border-color: #CDF22B;
-        }
-
-        .why-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .why-title {
-            font-size: 1.4rem;
-            color: #1E455B;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .why-desc {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #1E455B;
-        }
-
-        /* CTA Button */
         .cta-button {
             display: inline-block;
-            background: #CDF22B;
-            color: #1E455B;
-            font-size: 2rem;
-            font-weight: bold;
-            padding: 20px 60px;
-            border-radius: 50px;
+            background: #39D353;
+            color: #FFFFFF;
+            font-size: 3rem;
+            font-weight: 900;
+            padding: 40px 100px;
             text-decoration: none;
-            margin: 40px auto;
-            border: 5px solid #1E455B;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.3);
+            border: 6px solid #39D353;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
         .cta-button:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.3);
+            background: #0645AD;
+            border-color: #0645AD;
+            transform: scale(1.05);
         }
 
-        .cta-button::before {
-            content: '✨';
-            position: absolute;
-            left: 20px;
-        }
-
-        .cta-button::after {
-            content: '✨';
-            position: absolute;
-            right: 20px;
-        }
-
-        .cta-container {
-            text-align: center;
-            margin: 60px 0;
+        .cta-subtitle {
+            margin-top: 40px;
+            font-size: 1.4rem;
+            color: #003B8F;
+            font-weight: 600;
         }
 
         /* Footer */
         footer {
+            border-top: 3px solid #0645AD;
+            padding: 80px 0 40px;
             text-align: center;
-            padding: 40px 20px;
-            color: #CDF22B;
+            color: #003B8F;
+        }
+
+        footer p {
             font-size: 1.1rem;
+            margin: 15px 0;
+        }
+
+        footer strong {
+            color: #0645AD;
+            font-weight: 900;
+        }
+
+        /* Graphic Element Positions */
+        .hero-graphic-1 {
+            position: absolute;
+            top: -100px;
+            right: -50px;
+            z-index: 1;
+        }
+
+        .hero-graphic-2 {
+            position: absolute;
+            bottom: 50px;
+            left: -80px;
+            z-index: 1;
+        }
+
+        .hero-graphic-3 {
+            position: absolute;
+            top: 40%;
+            right: -100px;
+            z-index: 1;
+        }
+
+        .section-graphic-1 {
+            position: absolute;
+            top: -50px;
+            right: 100px;
+            z-index: 0;
+        }
+
+        .section-graphic-2 {
+            position: absolute;
+            bottom: -80px;
+            left: 50px;
+            z-index: 0;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
+        @media (max-width: 1024px) {
+            header {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
 
-            .profile-container {
-                width: 250px;
-                height: 250px;
+            .hero-title {
+                font-size: 5rem;
+            }
+
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-number {
+                font-size: 100px;
+                position: relative;
+                top: 0;
+            }
+
+            .why-vote-detailed {
+                grid-template-columns: 1fr;
+            }
+
+            .why-card:nth-child(2),
+            .why-card:nth-child(5) {
+                transform: translateY(0);
             }
 
             .achievements-grid {
@@ -399,19 +573,37 @@
             }
 
             .section-title {
+                font-size: 3rem;
+            }
+
+            .cta-button {
                 font-size: 2rem;
+                padding: 30px 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .intro-text {
+                padding: 40px 30px;
+                font-size: 1.2rem;
             }
 
             .cta-button {
                 font-size: 1.5rem;
-                padding: 15px 40px;
+                padding: 25px 40px;
             }
-        }
-
-        /* Highlight Text */
-        .highlight {
-            color: #CDF22B;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -419,30 +611,43 @@
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
 
-    <!-- Background Blur Blobs -->
-    <div class="blur-blob blob-1"></div>
-    <div class="blur-blob blob-2"></div>
-    <div class="blur-blob blob-3"></div>
-
-    <!-- Doodle Stars -->
-    <div class="star" style="top: 10%; left: 15%;">⭐</div>
-    <div class="star" style="top: 20%; right: 10%;">✨</div>
-    <div class="star" style="bottom: 30%; left: 10%;">💫</div>
-    <div class="star" style="top: 50%; right: 20%;">⭐</div>
-    <div class="star" style="bottom: 20%; right: 15%;">✨</div>
-    <div class="star" style="top: 70%; left: 25%;">💫</div>
-
     <div class="container">
-        <!-- Header -->
+        <!-- Hero Section -->
         <header>
-            <h1 class="hero-title">VOTE SADIA FOR VP</h1>
-            <p class="subtitle">Leadership That Gets It. Innovation That Delivers. 💯</p>
-            <p class="society-name">HITS - Hayatian Information Technology Society</p>
-            <p class="contact-info">📞 Contact: <a href="tel:03409740991">0340-9740991</a></p>
+            <div class="hero-left">
+                <p class="label-small">HITS Elections 2026</p>
+                <h1 class="hero-title">
+                    <span>VOTE</span>
+                    <span>SADIA</span>
+                    <span>FOR VP</span>
+                </h1>
+                <p class="subtitle">Leadership That Gets It. Innovation That Delivers. Building a tech community where opportunities aren't gatekept—they're created.</p>
+                <p class="society-name">HITS - Hayatian Information Technology Society</p>
+                <p class="contact-info"><a href="tel:03409740991">0340-9740991</a></p>
+            </div>
+
+            <div class="hero-right">
+                <!-- Graphic Elements -->
+                <div class="graphic-element hero-graphic-1">
+                    <div class="circle-outline"></div>
+                </div>
+                <div class="graphic-element hero-graphic-2">
+                    <div class="blob-graphic"></div>
+                </div>
+                <div class="graphic-element hero-graphic-3">
+                    <div class="star-burst">★</div>
+                </div>
+
+                <div class="hero-image-container">
+                    <img src="assets/sadia-main-photo.png" alt="Sadia" class="hero-image">
+                    <div class="image-label">VP Candidate 2026</div>
+                </div>
+            </div>
         </header>
 
         <!-- Profile Section -->
         <section class="profile-section">
+            <div class="section-number">01</div>
             <div class="intro-text">
                 <p>Hi, I'm <span class="highlight">Sadia</span> — and I'm running for Vice President because our tech community deserves leadership that creates real opportunities, not just promises. I've walked this path: late-night job searches, certificate stress, wondering who's actually invested in our growth. I am. With proven experience in tech leadership and a track record of delivering results, I'm here to build a community where talented students like you get the recognition and opportunities you've earned. <strong>Let's make it happen.</strong> 🚀</p>
             </div>
@@ -450,6 +655,7 @@
 
         <!-- Video Section -->
         <section class="video-section">
+            <div class="video-label">→ Watch Introduction</div>
             <video controls>
                 <source src="assets/sadia-video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -458,34 +664,45 @@
 
         <!-- Why Vote Section -->
         <section class="content-section">
-            <h2 class="section-title">Why Vote for Sadia? 💡</h2>
+            <div class="graphic-element section-graphic-1">
+                <div class="checkerboard"></div>
+            </div>
+
+            <h2 class="section-title">Why Vote for Sadia?</h2>
+
             <div class="why-vote-detailed">
                 <div class="why-card">
+                    <div class="why-number">01</div>
                     <div class="why-icon">🚀</div>
                     <div class="why-title">Real Hackathons & Certified Learning</div>
                     <div class="why-desc">No more passive learning sessions. I'll organize hands-on hackathons and technical workshops where you build real projects and earn official certifications. Think collaborative coding, industry mentorship, and credentials that actually matter on your resume.</div>
                 </div>
                 <div class="why-card">
+                    <div class="why-number">02</div>
                     <div class="why-icon">🎯</div>
                     <div class="why-title">Personalized Mentorship & Guidance</div>
                     <div class="why-desc">Having navigated this journey myself, I understand the challenges. I'll provide direct mentorship to help you navigate campus platforms, meet deadlines, and seize opportunities. Your success is my mission.</div>
                 </div>
                 <div class="why-card">
+                    <div class="why-number">03</div>
                     <div class="why-icon">💼</div>
                     <div class="why-title">Exclusive Job Portal Access</div>
                     <div class="why-desc">Direct connections to premium job portals, professional recruitment networks, and industry communities. Vote for me and unlock access to opportunities that are typically gatekept. Your career growth starts here.</div>
                 </div>
                 <div class="why-card">
+                    <div class="why-number">04</div>
                     <div class="why-icon">🌐</div>
                     <div class="why-title">Built-for-You Tech Community</div>
                     <div class="why-desc">Join a network of genuine builders and innovators. Collaborate on meaningful projects, exchange knowledge, and connect with peers who are serious about tech. A community that extends beyond campus walls.</div>
                 </div>
                 <div class="why-card">
+                    <div class="why-number">05</div>
                     <div class="why-icon">🎓</div>
                     <div class="why-title">Proven Track Record</div>
                     <div class="why-desc">As HITS leading member last year, I successfully managed multiple initiatives while maintaining excellence. I know what works, what our community needs, and how to deliver results that matter.</div>
                 </div>
                 <div class="why-card">
+                    <div class="why-number">06</div>
                     <div class="why-icon">🤝</div>
                     <div class="why-title">Inclusive Growth Philosophy</div>
                     <div class="why-desc">My leadership is built on collective success. No gatekeeping, no exclusivity — if you're passionate about learning and contributing to tech, there's a place for you in this community.</div>
@@ -495,7 +712,12 @@
 
         <!-- Achievements Section -->
         <section class="content-section">
-            <h2 class="section-title">Qualifications & Experience ✨</h2>
+            <div class="graphic-element section-graphic-2">
+                <div class="ring-element"></div>
+            </div>
+
+            <h2 class="section-title">Qualifications & Experience</h2>
+
             <div class="achievements-grid">
                 <div class="achievement-card">
                     <div class="achievement-title">🇵🇰 Uran Pakistan Youth Cabinet Member</div>
@@ -527,19 +749,19 @@
         <!-- CTA -->
         <div class="cta-container">
             <a href="#vote" class="cta-button">VOTE SADIA FOR VP</a>
-            <p style="margin-top: 20px; font-size: 1.2rem; color: #1E455B;">Let's build something extraordinary together 💪</p>
+            <p class="cta-subtitle">Let's build something extraordinary together 💪</p>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p>Building a tech community that delivers real impact 🚀✨</p>
-            <p style="margin-top: 20px; font-size: 1.1rem; color: #1E455B;">📞 Contact: <strong>0340-9740991</strong></p>
-            <p style="margin-top: 15px; font-size: 0.9rem; color: #1E455B;">HITS Elections 2026 | Leadership. Innovation. Results.</p>
+            <p>Building a tech community that delivers real impact 🚀</p>
+            <p>📞 Contact: <strong>0340-9740991</strong></p>
+            <p style="font-size: 0.9rem; margin-top: 30px; opacity: 0.7;">HITS Elections 2026 | Leadership. Innovation. Results.</p>
         </footer>
     </div>
 
     <script>
-        // Custom Cursor - Face follows mouse
+        // Custom Cursor
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -552,12 +774,12 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Scroll Animations
+        // Scroll-based animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -567,11 +789,22 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.content-section, .achievement-card').forEach(el => {
+        document.querySelectorAll('.why-card, .achievement-card, .intro-text').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(50px)';
-            el.style.transition = 'all 0.6s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
+        });
+
+        // Parallax effect for graphic elements
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            document.querySelectorAll('.graphic-element').forEach((el, index) => {
+                const speed = (index + 1) * 0.5;
+                el.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+            });
         });
     </script>
 </body>
